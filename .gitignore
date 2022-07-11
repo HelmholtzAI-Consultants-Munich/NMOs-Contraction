@@ -2,3 +2,4 @@
 .DS_Store
 /data/*
 signal-extraction/extracted_signals/ 
+time-series/.ipynb_checkpoints/*
