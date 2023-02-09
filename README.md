@@ -6,6 +6,11 @@
 ## Description
 The aim of this project is to analyse the contraction of neuromuscular organoids developed from induced pluripotent stem cells coming from healthy individual and patients with neuromuscular diseases. Specifically, we will focus on organoids from patients with spinal muscular atrophy where contraction of muscle is severely affected.
 
+The appraoch is devided in two main step: the time series extraction and the time series analysis.
+The following video explains the steps for the time series extraction.
+
+https://user-images.githubusercontent.com/104511563/217865695-da1e4b07-a6ce-47c4-a4d1-1362fe773229.mp4
+
 
 ## Installation and Requirement
 The code has been implemented using Python 3.9. The libraries used by the pipeline are all listed in requirements.txt.
