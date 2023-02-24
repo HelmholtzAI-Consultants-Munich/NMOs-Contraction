@@ -17,9 +17,12 @@ The **time series extraction** consists of the following steps:
 - vertical movement of mean point of each region recorder over time to produce time series
 
 The previous steps are summerized in this video:
+
 https://user-images.githubusercontent.com/104511563/221238175-c4786bb6-c710-43cb-b46a-b27510255ec3.mp4
 
+
 The **time series analysis** comprehends the signal pre-processing and the univariate and bivariate analysis.
+
 The pre-processing steps are:
 - interpolation, to fill NaNs value which may occur from signal extraction
 - scaling, to convert in physical units
