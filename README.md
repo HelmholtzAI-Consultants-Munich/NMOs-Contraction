@@ -35,5 +35,21 @@ The code has been implemented using Python 3.9. The libraries used by the pipeli
 The notebooks in the NMO-colab branch can be run on a browser without the need of any installation on your local machine.
 You can upload the folder on your Google Drive and run the notebooks on Colab, please note that you must have acces to a Google account.
 
+## Repo structure
+The directory structure of the project looks like this:
+```
+├── colab                  <- Final Jupyter notebook for Google Colab environment
+│
+├── exploration            <- notebooks and presentation from the exploration phase
+│
+├── signal-extraction      <- notebooks for the signal extraction step
+│
+├── time-series-analysis   <- scripts for the time series extraction
+│
+├── requirements.txt       <- File for installing python dependencies
+│
+└── README.md
+```
+
 ## Contributing
 Comments and input are very welcome! Please, if you have a suggestion or you think something should be changed, open an issue or submit a pull request.
