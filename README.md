@@ -53,9 +53,10 @@ The directory structure of the project looks like this:
 ```
 ## Notebooks Versioning
 We report here the main difference between the colab notebook delivered to the collaborators
-v1 - 31/01/2023: first version built for first batch of data
-v2 - 03/05/2023: add wodget to select the input chanel for the video, add a condition for currupted video from the first batch
-v3 - 30/05/2023: remove reference to curare and other calsses, generalize for any kind of phenotype/treatment present in the excel file with the data description
+
+- v1 - 31/01/2023: first version built for first batch of data
+- v2 - 03/05/2023: add wodget to select the input chanel for the video, add a condition for currupted video from the first batch
+- v3 - 30/05/2023: remove reference to curare and other calsses, generalize for any kind of phenotype/treatment present in the excel file with the data description
 
 ## Contributing
 Comments and input are very welcome! Please, if you have a suggestion or you think something should be changed, open an issue or submit a pull request.
