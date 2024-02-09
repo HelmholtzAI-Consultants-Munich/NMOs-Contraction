@@ -17,3 +17,5 @@ scikit-image==0.19.3
 statsmodels==0.13.5
 tsfresh==0.19.0
 utils==1.0.1
+ipympl>=0.9.3
+openpyxl>=3.1.2
