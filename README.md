@@ -58,7 +58,8 @@ We report here the main difference between the colab notebook delivered to the c
 - v2 - 03/05/2023: add a widget to select the input channel for the video, add a condition for corrupted video from the first batch
 - v3 - 30/05/2023: remove reference to curare and other classes, generalize for any kind of phenotype/treatment present in the Excel file with the data description
 - v4 - 07/12/2023: ts-extraction: add neuro-muscular ratio calculation, ts-analysis: add widget to choose Excel file and save final table is CSV file
-- v5 - 12/02/2024: added 1_time_series_extraction_v5: added computation pixel counts of the organoid and added to the excel file (waiting for image resolution to convert in the physical area) and extended box widget for image selection
+- v5 - 12/02/2024: added 1_time_series_extraction_v5: added computation pixel counts of the organoid and added to the Excel file (waiting for image resolution to convert in the physical area) and extended box widget for image selection
+     - 28/02/2024: adapt the notebooks to the new Excel template format, added violin plots and total count plot (still waiting for pixel resolution to convert in the physical area).
 
 ## Contributing
 Comments and input are very welcome! Please, if you have a suggestion or you think something should be changed, open an issue or submit a pull request.
