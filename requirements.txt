@@ -1,6 +1,7 @@
 ipython>=8.10.0
 ipywidgets>=8.0.4
 jupyter>=1.0.0
+jupyterlab>=4.1.5
 kaleido>=0.2.1
 matplotlib>=3.6.2
 numpy>=1.23.5
@@ -18,3 +19,4 @@ statsmodels>=0.13.5
 tsfresh>=0.19.0
 ipympl>=0.9.3
 openpyxl>=3.1.2
+voila>=0.5.6
