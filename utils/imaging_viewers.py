@@ -3,7 +3,7 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 import ipywidgets as ipyw
 
 import numpy as np
-from .time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_pixel_counts, get_binary_opening, get_wo_small_objects, get_canny_edges
+from time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_pixel_counts, get_binary_opening, get_wo_small_objects, get_canny_edges
 
 # Switch between simple image view and overlay with mask view
 def change_view(label):
