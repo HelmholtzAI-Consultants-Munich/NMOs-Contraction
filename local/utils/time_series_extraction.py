@@ -19,6 +19,11 @@ def get_wo_small_objects(img, min_size=400):
 
 def compute_gaussian(img, sigma):
     return gaussian(img, sigma)
+
+# Get the two threhsolds for the image using multi-otsu thresholding
+def get_mutli_otsu_thresholds(img):
+  thresholds = threshold_multiotsu(img, classes=3)
+  return thresholds
     
 def remove_border_points(border_points):
     '''Remove the white pixels on border of image'''
@@ -84,11 +89,6 @@ def get_border_angle(x , y):
     if y[0] > y[-1]: theta = 180+theta
     return theta
 
-# Get the two threhsolds for the image using multi-otsu thresholding
-def get_mutli_otsu_thresholds(img):
-  thresholds = threshold_multiotsu(img, classes=3)
-  return thresholds
-
 # Apply the threhsolds from the otsu method and generate a mask
 def apply_thresholds(img, thresholds):
   mask = np.zeros(img.shape, dtype=np.uint8)
@@ -132,7 +132,7 @@ def compute_total_pixel_counts(mask):
   return n_pix + m_pix
 
 
-def extract_signal(img_array, thresh):
+def extract_signal(img_array, thresh, bar):
 
   border_size = []
   med_y = []
@@ -142,7 +142,7 @@ def extract_signal(img_array, thresh):
 
   # and go a second time over to extract signals
   for frame_id in range(num_frames):
-
+    bar.value = frame_id
     # extract border and sort pixels
     (x,y), _ = extract_border(img_array[frame_id], thresh)
     x, y = sort_border(x, y)
@@ -181,7 +181,7 @@ def extract_signal(img_array, thresh):
   del mask
 
   for frame_id in range(num_frames):
-
+    bar.value = frame_id + num_frames
     mask_r = rotated_masks[frame_id]
 
     # Pad so we always have a fixed size image

@@ -3,7 +3,15 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 import ipywidgets as ipyw
 
 import numpy as np
-from .time_series_extraction import get_binary_opening, get_wo_small_objects, get_canny_edges
+from .time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_pixel_counts, get_binary_opening, get_wo_small_objects, get_canny_edges
+
+# Switch between simple image view and overlay with mask view
+def change_view(label):
+  if label=='mask on':
+    masked_image.set_array(np.ma.masked_array(mask_pp, ~mask_pp.astype(bool)))
+  else:
+    masked_image.set_array(np.ma.masked_array(img, ~np.zeros(img.shape).astype(bool)))
+  fig.canvas.draw_idle()
 
 class Viewer():
   def __init__(self, img):
@@ -83,15 +91,6 @@ class Viewer():
   def get_total_pixel_counts(self):
     return self.total_pixel_counts
 
-# Switch between simple image view and overlay with mask view
-def change_view(label):
-  if label=='mask on':
-    masked_image.set_array(np.ma.masked_array(mask_pp, ~mask_pp.astype(bool)))
-  else:
-    masked_image.set_array(np.ma.masked_array(img, ~np.zeros(img.shape).astype(bool)))
-  fig.canvas.draw_idle()
-
-
 
 class ImageSliceViewer3D:
     """
@@ -117,33 +116,33 @@ class ImageSliceViewer3D:
         self.figsize = figsize
         self.cmap = cmap
         self.v = [np.min(volume), np.max(volume)]
-
+        
         # Call to view a slice within the selected slice plane
         ipyw.interact(self.change_thresh,
             t=ipyw.FloatSlider(value=self.threshold, min=0, max=1, step=0.01, continuous_update=False,
             description='Threshold:', readout_format='.2f'))
 
     def change_thresh(self, t):
-      mask = self.volume_g > t
-      self.img_copy = self.volume.copy()
-      bar = ipyw.IntProgress(value=0, min=0, max=len(range(mask.shape[0])), description='Loading:',
+        mask = self.volume_g > t
+        self.img_copy = self.volume.copy()
+        bar = ipyw.IntProgress(value=0, min=0, max=len(range(mask.shape[0])), description='Loading:',
                        bar_style='', # 'success', 'info', 'warning', 'danger' or ''
                        #style={'bar_color': 'maroon'},
                        #orientation='horizontal'
                        )
-      display(bar)
-      for i in range(mask.shape[0]):
-        bar.value = i
-        mask[i] = get_binary_opening(mask[i])
-        mask[i] = get_wo_small_objects(mask[i])
-        mask[i] = get_canny_edges(mask[i], 3)
-        img_temp = self.volume[i].copy()
-        img_temp[mask[i]==1] = 255
-        self.img_copy[i] = img_temp
-
-      bar.bar_style = 'success'
-      maxZ = self.volume.shape[0] - 1
-      ipyw.interact(self.plot_slice,
+        display(bar)
+        for i in range(mask.shape[0]):
+            bar.value = i
+            mask[i] = get_binary_opening(mask[i])
+            mask[i] = get_wo_small_objects(mask[i])
+            mask[i] = get_canny_edges(mask[i], 3)
+            img_temp = self.volume[i].copy()
+            img_temp[mask[i]==1] = 255
+            self.img_copy[i] = img_temp
+        
+        bar.bar_style = 'success'
+        maxZ = self.volume.shape[0] - 1
+        ipyw.interact(self.plot_slice,
           z=ipyw.IntSlider(min=0, max=maxZ, step=1, continuous_update=False,
           description='Time Frames:', layout=ipyw.Layout(width='100%')))
 
@@ -153,3 +152,4 @@ class ImageSliceViewer3D:
         self.fig = plt.figure(figsize=self.figsize)
         plt.imshow(self.img_copy[z], cmap=plt.get_cmap(self.cmap),
             vmin=self.v[0], vmax=self.v[1])
+        plt.show()
