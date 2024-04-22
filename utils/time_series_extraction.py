@@ -125,11 +125,12 @@ def compute_nm_ratio(mask):
   if n_pix==0 and m_pix==0: return 0, 0
   return np.round(n_pix/(n_pix+m_pix), 2), np.round(m_pix/(n_pix+m_pix),2)
 
-#Compute the total number of pixel of the organoid
-def compute_total_pixel_counts(mask):
+#Compute the total area of the organoid
+def compute_total_area(mask):
   n_pix = np.sum(mask==9)
   m_pix = np.sum(mask==4)
-  return n_pix + m_pix
+  conversion_factor = 6.078**2 # 1 pixel = 6.078 micrometer
+  return np.round((n_pix + m_pix) * conversion_factor, 2)
 
 
 def extract_signal(img_array, thresh, bar):

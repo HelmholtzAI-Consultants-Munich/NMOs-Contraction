@@ -3,7 +3,7 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 import ipywidgets as ipyw
 
 import numpy as np
-from time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_pixel_counts, get_binary_opening, get_wo_small_objects, get_canny_edges
+from time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_area, get_binary_opening, get_wo_small_objects, get_canny_edges
 
 # Switch between simple image view and overlay with mask view
 def change_view(label):
@@ -21,8 +21,8 @@ class Viewer():
     #self.mask = remove_holes_and_objects(self.mask)
     self.n_ratio, self.m_ratio = compute_nm_ratio(self.mask)
     self.thresh0, self.thresh1 = otsu_thresholds
-    self.total_pixel_counts = compute_total_pixel_counts(self.mask)
-    fig_title = 'Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)
+    self.total_area = compute_total_area(self.mask)
+    fig_title = 'Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(self.total_area)+' µm'
 
     # Setup figure properties and add the image to the plot
     self.fig, self.ax = plt.subplots()
@@ -61,10 +61,10 @@ class Viewer():
     self.mask = apply_thresholds(self.img, (self.thresh0_slider.val, self.thresh1_slider.val))
     #self.mask = remove_holes_and_objects(self.mask)
     self.n_ratio, self.m_ratio = compute_nm_ratio(self.mask)
-    self.total_pixel_counts = compute_total_pixel_counts(self.mask)
+    self.total_area = compute_total_area(self.mask)
     self.masked_image.set_array(np.ma.masked_array(self.mask, ~self.mask.astype(bool)))
     self.fig.canvas.draw_idle()
-    self.ax.set_title('Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_pixel_counts:'+str(self.total_pixel_counts))
+    self.ax.set_title('Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(self.total_area)+' µm')
 
   # Update the threshold values once the reset button has been clicked
   def reset_button_on_clicked(self, mouse_event):
@@ -88,8 +88,8 @@ class Viewer():
   def get_thresholds(self):
     return self.thresh0_slider.val, self.thresh1_slider.val
 
-  def get_total_pixel_counts(self):
-    return self.total_pixel_counts
+  def get_total_area(self):
+    return self.total_area
 
 
 class ImageSliceViewer3D:
