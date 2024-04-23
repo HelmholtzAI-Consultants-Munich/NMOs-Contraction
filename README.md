@@ -11,11 +11,16 @@ The approach is divided into two main steps: the time series extraction and the 
 
 The **time series extraction** consists of the following steps:
 
-- thresholding (Otsu method) for binary segmentation
-- border extraction (Caddy Edge Detector method)
-- border rotation
-- border division into subregions
-- vertical movement of the mean point of each region recorder over time to produce a time series
+1. On the images displaying the entire organoid:
+    - thresholding (multi-Otsu method) to obtain a mask of the neural and muscular parts of the organoid and the background
+    - post processing (remove and fill small holes) of the mask
+    - neural-muscular ratio computation
+2. On the videos displaying contraction in a small area of the organoid
+    - thresholding (Otsu method) for binary segmentation of organoid and background
+    - border extraction (Caddy Edge Detector method)
+    - border rotation
+    - border division into subregions
+    - vertical movement of the mean point of each region recorder over time to produce a time series representing the border contraction
 
 The previous steps are summarized in this video:
 
