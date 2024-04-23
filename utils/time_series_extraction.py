@@ -143,7 +143,7 @@ def extract_signal(img_array, thresh, bar):
 
   # and go a second time over to extract signals
   for frame_id in range(num_frames):
-    bar.value = frame_id
+    if frame_id%100==0: bar.value = frame_id
     # extract border and sort pixels
     (x,y), _ = extract_border(img_array[frame_id], thresh)
     x, y = sort_border(x, y)
@@ -159,7 +159,6 @@ def extract_signal(img_array, thresh, bar):
     med_y.append(dist_y//2 + y[0])
     border_size.append(dist_y)
     rotated_masks.append(mask_r)
-
   # get minimum border length and where the border is minimized
   border_size = np.array(border_size)
   bbox_size = np.min(border_size)
@@ -182,7 +181,7 @@ def extract_signal(img_array, thresh, bar):
   del mask
 
   for frame_id in range(num_frames):
-    bar.value = frame_id + num_frames
+    if frame_id%100==0: bar.value = frame_id + num_frames
     mask_r = rotated_masks[frame_id]
 
     # Pad so we always have a fixed size image

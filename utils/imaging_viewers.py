@@ -5,13 +5,6 @@ import ipywidgets as ipyw
 import numpy as np
 from time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_area, get_binary_opening, get_wo_small_objects, get_canny_edges
 
-# Switch between simple image view and overlay with mask view
-def change_view(label):
-  if label=='mask on':
-    masked_image.set_array(np.ma.masked_array(mask_pp, ~mask_pp.astype(bool)))
-  else:
-    masked_image.set_array(np.ma.masked_array(img, ~np.zeros(img.shape).astype(bool)))
-  fig.canvas.draw_idle()
 
 class Viewer():
   def __init__(self, img):
@@ -22,7 +15,7 @@ class Viewer():
     self.n_ratio, self.m_ratio = compute_nm_ratio(self.mask)
     self.thresh0, self.thresh1 = otsu_thresholds
     self.total_area = compute_total_area(self.mask)
-    fig_title = 'Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(self.total_area)+' µm'
+    fig_title = 'Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(round(self.total_area/1e6, 3))+' mm^2'
 
     # Setup figure properties and add the image to the plot
     self.fig, self.ax = plt.subplots()
@@ -109,11 +102,10 @@ class ImageSliceViewer3D:
 
     """
 
-    def __init__(self, volume_g, volume, threshold, figsize=(15,15), cmap='gray'):
+    def __init__(self, volume_g, volume, threshold, cmap='gray'):
         self.volume_g = volume_g
         self.volume = volume
         self.threshold = threshold
-        self.figsize = figsize
         self.cmap = cmap
         self.v = [np.min(volume), np.max(volume)]
         
@@ -144,12 +136,13 @@ class ImageSliceViewer3D:
         maxZ = self.volume.shape[0] - 1
         ipyw.interact(self.plot_slice,
           z=ipyw.IntSlider(min=0, max=maxZ, step=1, continuous_update=False,
-          description='Time Frames:', layout=ipyw.Layout(width='100%')))
+          description='Time Frames:', layout=ipyw.Layout())) #width='100%')))
 
 
     def plot_slice(self, z):
         # Plot slice for the given plane and slice
-        self.fig = plt.figure(figsize=self.figsize)
+        self.fig = plt.figure()
+        plt.axis('off')
         plt.imshow(self.img_copy[z], cmap=plt.get_cmap(self.cmap),
             vmin=self.v[0], vmax=self.v[1])
         plt.show()
