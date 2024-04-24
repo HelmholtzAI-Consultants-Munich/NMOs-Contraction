@@ -130,7 +130,7 @@ def compute_total_area(mask):
   n_pix = np.sum(mask==9)
   m_pix = np.sum(mask==4)
   conversion_factor = 6.078**2 # 1 pixel = 6.078 micrometer
-  return np.round((n_pix + m_pix) * conversion_factor, 2)
+  return np.round(((n_pix + m_pix) * conversion_factor) / 1e6, 2) # return area in mm^2
 
 
 def extract_signal(img_array, thresh, bar):

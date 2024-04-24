@@ -15,7 +15,7 @@ class Viewer():
     self.n_ratio, self.m_ratio = compute_nm_ratio(self.mask)
     self.thresh0, self.thresh1 = otsu_thresholds
     self.total_area = compute_total_area(self.mask)
-    fig_title = 'Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(round(self.total_area/1e6, 3))+' mm^2'
+    fig_title = 'Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(round(self.total_area, 3))+' mm^2'
 
     # Setup figure properties and add the image to the plot
     self.fig, self.ax = plt.subplots()
@@ -57,7 +57,7 @@ class Viewer():
     self.total_area = compute_total_area(self.mask)
     self.masked_image.set_array(np.ma.masked_array(self.mask, ~self.mask.astype(bool)))
     self.fig.canvas.draw_idle()
-    self.ax.set_title('Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(self.total_area)+' µm')
+    self.ax.set_title('Muscle part: '+str(self.m_ratio)+', Neural part: '+str(self.n_ratio)+',\n Total_area: '+str(self.total_area)+' mm^2')
 
   # Update the threshold values once the reset button has been clicked
   def reset_button_on_clicked(self, mouse_event):
