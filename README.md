@@ -38,9 +38,6 @@ The pre-processing steps are:
 ## Installation and Requirement
 The code has been implemented using Python 3.9. The libraries used by the pipeline are all listed in requirements.txt.
 
-The notebooks in the NMO-colab branch can be run on a browser without the need for any installation on your local machine.
-You can upload the folder on your Google Drive and run the notebooks on Colab, please note that you must have access to a Google account.
-
 ## Repo structure
 The directory structure of the project looks like this:
 ```
@@ -59,7 +56,9 @@ The directory structure of the project looks like this:
 ## Instructions
 The content in the 'colab' folder is outdated as of 30/05/2023 and should not be used.
 
-To run the latest code, navigate to the 'local' folder. Open the notebooks in a Jupyter Lab session and click on the Voilà icon to execute the code.
+To run the latest code, navigate to the 'local' folder. Open the notebooks in a Jupyter Lab session and click on the Voilà icon (see image below) to execute the code and interact with it.
+![voila-example](https://github.com/HelmholtzAI-Consultants-Munich/NMOs-Contraction/assets/104511563/c368c2ce-f1e4-4149-97c7-52a130ec6458)
+
 
 ## Contributing
 Comments and input are very welcome! Please, if you have a suggestion or you think something should be changed, open an issue or submit a pull request.
