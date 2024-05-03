@@ -17,7 +17,7 @@ The **time series extraction** consists of the following steps:
     - neural-muscular ratio computation
 2. On the videos displaying contraction in a small area of the organoid
     - thresholding (Otsu method) for binary segmentation of organoid and background
-    - border extraction (Caddy Edge Detector method)
+    - border extraction (Canny Edge Detector method)
     - border rotation
     - border division into subregions
     - vertical movement of the mean point of each region recorder over time to produce a time series representing the border contraction
