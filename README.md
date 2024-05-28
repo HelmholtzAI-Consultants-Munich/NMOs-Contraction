@@ -35,8 +35,63 @@ The pre-processing steps are:
 - smoothing, to reduce noise
 - de-trending, to correct organoid drift
 
-## Installation and Requirement
+## Installation and Requirements
 The code has been implemented using Python 3.9. The libraries used by the pipeline are all listed in requirements.txt.
+Below the instruction to create an environment and clone the repository.
+
+1. Make sure you have Python version 3.9 installed on your system.
+
+2. Create a new virtual environment with Python 3.9. You can use `venv` or `conda` depending on your preference:
+
+    Using venv
+    ```
+    python3.9 -m venv NMO-contraction
+    ```
+   
+    Using conda
+
+    ```
+    
+    conda create --name NMO-contraction python=3.9
+    ```
+
+4. Activate the virtual environment:
+
+    For Unix/Linux
+    ```
+    source NMO-contraction/bin/activate
+    ```
+    
+    For Windows
+    ```
+    NMO-contraction\Scripts\activate
+    ```
+   
+    For macOS with conda
+    ```
+    conda activate NMO-contraction
+    ```
+
+
+6. Install the required packages from the `requirements.txt` file:
+
+    ```
+    pip install -r requirements.txt
+    ```
+
+7. Clone this repository to your local machine:
+
+    ```
+    git clone https://github.com/HelmholtzAI-Consultants-Munich/NMOs-Contraction.git
+    ```
+
+8. Navigate to the cloned repository directory:
+
+    ```
+    cd NMOs-Contraction
+    ```
+
+Now you're all set up and ready to start working with the project!
 
 ## Repo structure
 The directory structure of the project looks like this:
