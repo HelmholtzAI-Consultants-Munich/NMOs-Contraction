@@ -5,6 +5,8 @@ import ipywidgets as ipyw
 import numpy as np
 from time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_area, get_binary_opening, get_wo_small_objects, get_canny_edges
 
+from joblib import Parallel, delayed, cpu_count
+
 
 class Viewer():
   def __init__(self, img):
@@ -116,27 +118,29 @@ class ImageSliceViewer3D:
 
     def change_thresh(self, t):
         mask = self.volume_g > t
-        self.img_copy = self.volume.copy()
-        bar = ipyw.IntProgress(value=0, min=0, max=len(range(mask.shape[0])), description='Loading:',
-                       bar_style='', # 'success', 'info', 'warning', 'danger' or ''
-                       #style={'bar_color': 'maroon'},
-                       #orientation='horizontal'
-                       )
+        bar = ipyw.IntProgress(value=0, min=0, max=len(range(mask.shape[0])), description='Loading:',bar_style='')
         display(bar)
-        for i in range(mask.shape[0]):
-            bar.value = i
-            mask[i] = get_binary_opening(mask[i])
-            mask[i] = get_wo_small_objects(mask[i])
-            mask[i] = get_canny_edges(mask[i], 3)
-            img_temp = self.volume[i].copy()
-            img_temp[mask[i]==1] = 255
-            self.img_copy[i] = img_temp
+
+        images = Parallel(n_jobs=cpu_count() - 2, backend='threading')(
+            delayed(self._process_image)(mask[i], self.volume[i], bar) for i in range(mask.shape[0])
+        )
+        self.img_copy = np.array(images)
         
         bar.bar_style = 'success'
         maxZ = self.volume.shape[0] - 1
         ipyw.interact(self.plot_slice,
           z=ipyw.IntSlider(min=0, max=maxZ, step=1, continuous_update=False,
           description='Time Frames:', layout=ipyw.Layout())) #width='100%')))
+
+    
+    def _process_image(self, mask, image_slice, bar):
+        bar.value += 1
+        mask = get_binary_opening(mask)
+        mask = get_wo_small_objects(mask)
+        mask = get_canny_edges(mask, 3)
+        image = image_slice.copy()
+        image[mask==1] = 255
+        return image
 
 
     def plot_slice(self, z):
