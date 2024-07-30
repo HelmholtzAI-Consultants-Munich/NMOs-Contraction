@@ -116,7 +116,7 @@ def plot_acf_and_significant_lags(
         # Save plots in the folder= 
         save_path = image_path + '/ACF_plots/'
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        # plt.savefig(image_path + '/ACF_plots/' + input_name)
+        plt.savefig(image_path + '/ACF_plots/' + input_name)
         # plt.close(fig)
 
 
