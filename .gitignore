@@ -1,11 +1,8 @@
 .ipynb_checkpoints/
 .DS_Store
-/data/*
-signal-extraction/extracted_signals_curare/
-signal-extraction/extracted_signals/ 
-time-series/.ipynb_checkpoints/*
 __pycache__
-local/bordered_organoid_images/*
-local/organoid_images/*
-!local/organoid_images/diameters.csv
-
+src/figures/*
+src/extracted_signals/*
+src/videos/*
+*.xlsx
+*.csv
