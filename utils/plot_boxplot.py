@@ -10,8 +10,8 @@ def plot_boxplots(data_df, input_feature, axis, palette='tab10'):
     palette = string with a palette, choose between default tab10 or flare"""
 
     sns.boxplot(data=data_df, x='Class', y=input_feature, ax=axis, orient='v', palette=palette).set(title=input_feature)
-    if input_feature == 'Contraction Power':
-        axis.set(ylabel='Contraction Power [\u03BCm^2 / s]')
+    if input_feature == 'Contraction power':
+        axis.set(ylabel='Contraction power [\u03BCm^2 / s]')
     elif input_feature in ['Standard_deviation', 'Mean', 'Quantile_75']:
         axis.set(ylabel=input_feature+' [\u03BCm]')
     else:
