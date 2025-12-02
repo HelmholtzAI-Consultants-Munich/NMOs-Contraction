@@ -66,7 +66,7 @@ def create_feature_in_dataframe(data_array, df_fundamental_interval, threshold=0
                               np.median(count_above_mean_single_time_series)
                               ]],
                             columns=['Video name',
-                                     'Contraction Power',
+                                     'Contraction power',
                                      'Mean',
                                      '%_of_count_above_threshold',
                                      '%_of_absolute_sum_of_changes',
