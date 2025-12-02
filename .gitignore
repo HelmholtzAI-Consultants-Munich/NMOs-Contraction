@@ -4,5 +4,4 @@ __pycache__
 src/figures/*
 src/extracted_signals/*
 src/videos/*
-*.xlsx
 *.csv
