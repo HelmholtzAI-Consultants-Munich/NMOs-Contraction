@@ -1,7 +1,12 @@
 .ipynb_checkpoints/
 .DS_Store
 __pycache__
+
 src/figures/*
 src/extracted_signals/*
 src/videos/*
 *.csv
+
+!src/figures/.gitkeep
+!src/extracted_signals/.gitkeep
+!src/videos/.gitkeep
