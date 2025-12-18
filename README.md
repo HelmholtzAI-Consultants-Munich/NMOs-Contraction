@@ -29,6 +29,8 @@ The pre-processing steps are:
 - smoothing, to reduce noise
 - de-trending, to correct organoid drift
 
+The **border and area computation** computes the size and related features for organoids in brightfield images.
+
 ## Installation and Requirements
 The code has been implemented using Python 3.9. The libraries used by the pipeline are all listed in requirements.txt.
 Below the instruction to create an environment and clone the repository.
