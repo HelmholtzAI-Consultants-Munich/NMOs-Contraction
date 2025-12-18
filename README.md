@@ -1,6 +1,4 @@
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/HelmholtzAI-Consultants-Munich/NMOs-Contraction)
-
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 [![python](https://img.shields.io/badge/-Python__3.9-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
@@ -11,18 +9,12 @@ This project aims to analyze the contraction of neuromuscular organoids develope
 
 The approach is divided into two main steps: the time series extraction and the time series analysis.
 
-The **time series extraction** consists of the following steps:
-
-1. On the images displaying the entire organoid:
-    - thresholding (multi-Otsu method) to obtain a mask of the neural and muscular parts of the organoid and the background
-    - post processing (remove and fill small holes) of the mask
-    - neural-muscular ratio computation
-2. On the videos displaying contraction in a small area of the organoid
-    - thresholding (Otsu method) for binary segmentation of organoid and background
-    - border extraction (Canny Edge Detector method)
-    - border rotation
-    - border division into subregions
-    - vertical movement of the mean point of each region recorder over time to produce a time series representing the border contraction
+The **time series extraction** works with videos displaying contraction in a small area of the organoid and consists of the following steps:
+- thresholding (Otsu method) for binary segmentation of organoid and background
+- border extraction (Canny Edge Detector method)
+- border rotation
+- border division into subregions
+- vertical movement of the mean point of each region recorder over time to produce a time series representing the border contraction
 
 The previous steps are summarized in this video:
 
@@ -57,7 +49,7 @@ Below the instruction to create an environment and clone the repository.
     conda create --name NMO-contraction python=3.9
     ```
 
-4. Activate the virtual environment:
+3. Activate the virtual environment:
 
     For Unix/Linux
     ```
@@ -74,6 +66,17 @@ Below the instruction to create an environment and clone the repository.
     conda activate NMO-contraction
     ```
 
+4. Clone this repository to your local machine:
+
+    ```
+    git clone https://github.com/HelmholtzAI-Consultants-Munich/NMOs-Contraction.git
+    ```
+
+5. Navigate to the cloned repository directory:
+
+    ```
+    cd NMOs-Contraction
+    ```
 
 6. Install the required packages from the `requirements.txt` file:
 
@@ -81,28 +84,13 @@ Below the instruction to create an environment and clone the repository.
     pip install -r requirements.txt
     ```
 
-7. Clone this repository to your local machine:
-
-    ```
-    git clone https://github.com/HelmholtzAI-Consultants-Munich/NMOs-Contraction.git
-    ```
-
-8. Navigate to the cloned repository directory:
-
-    ```
-    cd NMOs-Contraction
-    ```
-
 Now you're all set up and ready to start working with the project!
 
 ## Repo structure
 The directory structure of the project looks like this:
 ```
-├── colab                  <- folders and notebooks for Google Colab environment
-│ 
-├── exploration            <- notebooks and presentation from the exploration phase
 │
-├── local                  <- folders and notebooks for local run
+├── src                    <- folders and notebooks for running the notebooks
 │
 ├── utils                  <- scripts with general utility scripts
 │
@@ -110,10 +98,10 @@ The directory structure of the project looks like this:
 │
 └── README.md
 ```
-## Instructions
-The content in the 'colab' folder is outdated as of 30/05/2023 and should not be used.
 
-To run the latest code, navigate to the 'local' folder. Open the notebooks in a Jupyter Lab session and click on the Voilà icon (see image below) to execute the code and interact with it.
+## Instructions
+
+To run the latest code, navigate to the 'src' folder. Open the notebooks in a ![Jupyter Lab session](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html) and click on the Voilà icon (see image below) to execute the code and interact with it.
 ![voila-example](https://github.com/HelmholtzAI-Consultants-Munich/NMOs-Contraction/assets/104511563/c368c2ce-f1e4-4149-97c7-52a130ec6458)
 
 
