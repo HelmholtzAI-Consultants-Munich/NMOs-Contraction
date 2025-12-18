@@ -3,7 +3,7 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 import ipywidgets as ipyw
 
 import numpy as np
-from time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_area, get_binary_opening, get_wo_small_objects, get_canny_edges
+from utils.time_series_extraction import get_mutli_otsu_thresholds, apply_thresholds, compute_nm_ratio, compute_total_area, get_binary_opening, get_wo_small_objects, get_canny_edges
 
 from joblib import Parallel, delayed, cpu_count
 
