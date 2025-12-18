@@ -5,8 +5,10 @@ __pycache__
 src/figures/*
 src/extracted_signals/*
 src/videos/*
+src/organoid_images/*
 *.csv
 
 !src/figures/.gitkeep
 !src/extracted_signals/.gitkeep
 !src/videos/.gitkeep
+!src/organoid_images/.gitkeep
