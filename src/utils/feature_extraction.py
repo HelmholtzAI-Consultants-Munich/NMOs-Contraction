@@ -26,7 +26,7 @@ def create_feature_in_dataframe(data_array, threshold=0.5):
                      / (len(data_array[file][1][i]) * scaling_time)
             energy_single_time_series.append(energy)
             # Mean
-            mean_ts = np.mean(data_array[file][1][i])
+            mean_ts = np.mean(abs(data_array[file][1][i]))
             mean_single_time_series.append(mean_ts)
             # Count above the mean
             count_above_mean = tsf.feature_extraction.feature_calculators.count_above_mean(data_array[file][1][i]) / \
